@@ -1,11 +1,17 @@
 var appMaster = {
 
     preLoader: function(){
-        imageSources = []
+        //var preloader = new ImagePreloader();
+        
+        var imageSources = []
         $('img').each(function() {
             var sources = $(this).attr('src');
             imageSources.push(sources);
         });
+        /*preloader.preload(imageSources).then(function(status){
+            $('.pre-loader').fadeOut('slow');
+        });*/
+        
         if($(imageSources).load()){
             $('.pre-loader').fadeOut('slow');
         }
@@ -13,7 +19,7 @@ var appMaster = {
 
     smoothScroll: function() {
         // Smooth Scrolling
-        $('a[href*=#]:not([href=#carousel-example-generic])').click(function() {
+        $('a[href*="#"]:not([href="#carousel-example-generic"])').click(function() {
             if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
 
                 var target = $(this.hash);
@@ -153,19 +159,12 @@ var appMaster = {
 
 
 $(document).ready(function() {
-
     appMaster.smoothScroll();
-
     appMaster.reviewsCarousel();
-
     appMaster.screensCarousel();
-
     appMaster.animateScript();
-
     appMaster.revSlider();
-
     appMaster.scrollMenu();
-
     appMaster.placeHold();
-
+	appMaster.preLoader();
 });
